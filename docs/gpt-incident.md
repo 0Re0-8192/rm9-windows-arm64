@@ -1,4 +1,5 @@
 # The GPT incident: how a Windows boot took the phone to EDL
+日本語版: [ja/gpt-incident.md](ja/gpt-incident.md)
 
 2026-10-13. This is the one that nearly ended the project, and it can happen to anyone who boots Windows on a UFS phone that has
 several LUNs with similar partition tables.

@@ -1,4 +1,5 @@
 # rm9-windows-arm64
+[日本語版 / Japanese](README.ja.md)
 
 Windows 11 ARM64 on the **RedMagic 9 Pro (ZTE/nubia NX769J, Snapdragon 8 Gen 3 / SM8650)**, started from the phone's own Android
 with a custom UEFI. This repository is the working bench of that bring-up: the glue code that runs inside the UEFI, the

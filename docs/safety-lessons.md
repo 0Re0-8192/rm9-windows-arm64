@@ -1,4 +1,5 @@
 # Safety lessons
+日本語版: [ja/safety-lessons.md](ja/safety-lessons.md)
 
 Everything below actually happened on this project. The common thread: Windows on this phone has no power or thermal management
 of its own, and it can stop in ways that neither the phone nor the PC notices, so the safeguards have to be built before the

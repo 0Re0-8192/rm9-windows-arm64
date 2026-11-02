@@ -1,4 +1,5 @@
 # Wi-Fi bring-up: WCN7850 on a phone SoC under Windows
+日本語版: [ja/wifi-bringup.md](ja/wifi-bringup.md)
 
 The WLAN chip of this phone (Qualcomm WCN7850 / FastConnect 7800, PCI `17cb:1107`) hangs off PCIe0. Android brings it up through
 the kernel and the CNSS driver. Windows has a driver for the chip (written for the X Elite laptops) but nothing that brings up the

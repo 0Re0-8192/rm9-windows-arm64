@@ -1,4 +1,5 @@
 # Boot flow
+日本語版: [ja/boot-flow.md](ja/boot-flow.md)
 
 How the phone gets into Windows and back, as of 2026-11. Everything here is specific to the NX769J.
 
