@@ -1,0 +1,59 @@
+; rm9hid.inf - RM9 virtual HID touch screen (VHF).  Root-enumerated: install with refs\winpe\hidinstall.ps1
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%ProviderString%
+DriverVer=10/19/2026,1.0.0.0
+CatalogFile=rm9hid.cat
+PnpLockdown=1
+
+[DestinationDirs]
+Rm9Hid.Files = 13
+
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+rm9hid.sys = 1
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTarm64
+
+[Standard.NTarm64]
+%DeviceName% = Rm9Hid_Install, Root\RM9HID
+
+[Rm9Hid_Install.NT]
+CopyFiles = Rm9Hid.Files
+
+[Rm9Hid.Files]
+rm9hid.sys
+
+[Rm9Hid_Install.NT.HW]
+AddReg = Rm9Hid_AddReg
+
+[Rm9Hid_AddReg]
+HKR,,"LowerFilters",0x00010000,"vhf"
+
+[Rm9Hid_Install.NT.Services]
+AddService = rm9hid, 0x00000002, Rm9Hid_Service
+
+[Rm9Hid_Service]
+DisplayName = %ServiceName%
+ServiceType = 1
+StartType = 3
+ErrorControl = 1
+ServiceBinary = %13%\rm9hid.sys
+
+[Rm9Hid_Install.NT.Wdf]
+KmdfService = rm9hid, Rm9Hid_Wdf
+
+[Rm9Hid_Wdf]
+KmdfLibraryVersion = 1.31
+
+[Strings]
+ProviderString = "RM9"
+ManufacturerName = "RM9"
+DiskName = "RM9 HID Installation Disk"
+DeviceName = "RM9 Virtual HID Touch Screen"
+ServiceName = "RM9 Virtual HID Touch Screen"

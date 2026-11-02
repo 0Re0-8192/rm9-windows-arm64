@@ -1,0 +1,46 @@
+[Defines]
+  INF_VERSION    = 0x0001001B
+  BASE_NAME      = MuChain
+  FILE_GUID      = 7C1D3B52-9F41-4A7E-BB10-6F4F2E9A0002
+  MODULE_TYPE    = UEFI_APPLICATION
+  VERSION_STRING = 1.0
+  ENTRY_POINT    = UefiMain
+
+[Sources]
+  MuChain.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  ArmPkg/ArmPkg.dec
+
+[LibraryClasses]
+  UefiApplicationEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiLib
+  DebugLib
+  BaseLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  DevicePathLib
+  ArmLib
+  PrintLib
+  CacheMaintenanceLib
+  ArmSmcLib
+  DxeServicesTableLib
+
+[Protocols]
+  gEfiBlockIoProtocolGuid
+  gEfiPartitionInfoProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiLoadedImageProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiGraphicsOutputProtocolGuid
+  gHardwareInterruptProtocolGuid
+  gEfiMemoryAttributeProtocolGuid
+
+[Guids]
+  gEfiFileInfoGuid
+  gEfiAcpi20TableGuid

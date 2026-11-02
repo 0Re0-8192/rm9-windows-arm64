@@ -1,0 +1,53 @@
+; rm9irq.inf - owns GIC SPIs 800..811 (the Wi-Fi chip's MSIs, sent to the GIC MBI frame) as interrupt resources.  ACPI-enumerated: device RIRQ (_HID RM9I0001, _CRS Interrupt 800..811) of Mu-pcie-rp5; install with refs\winpe\irqinstall.ps1 -Acpi
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%ProviderString%
+DriverVer=10/30/2026,1.0.0.3
+CatalogFile=rm9irq.cat
+PnpLockdown=1
+
+[DestinationDirs]
+Rm9Irq.Files = 13
+
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+rm9irq.sys = 1
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTarm64
+
+[Standard.NTarm64]
+%DeviceName% = Rm9Irq_Install, ACPI\RM9I0001
+
+[Rm9Irq_Install.NT]
+CopyFiles = Rm9Irq.Files
+
+[Rm9Irq.Files]
+rm9irq.sys
+
+[Rm9Irq_Install.NT.Services]
+AddService = rm9irq, 0x00000002, Rm9Irq_Service
+
+[Rm9Irq_Service]
+DisplayName = %ServiceName%
+ServiceType = 1
+StartType = 3
+ErrorControl = 1
+ServiceBinary = %13%\rm9irq.sys
+
+[Rm9Irq_Install.NT.Wdf]
+KmdfService = rm9irq, Rm9Irq_Wdf
+
+[Rm9Irq_Wdf]
+KmdfLibraryVersion = 1.31
+
+[Strings]
+ProviderString = "RM9"
+ManufacturerName = "RM9"
+DiskName = "RM9 IRQ Installation Disk"
+DeviceName = "RM9 Wi-Fi SPI Interrupts"
+ServiceName = "RM9 Wi-Fi SPI Interrupts"
