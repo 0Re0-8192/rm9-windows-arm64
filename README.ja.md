@@ -10,7 +10,7 @@
 
 | 領域 | 状態 |
 |---|---|
-| 起動 | スマホ単体で Windows 11 ARM64 が起動する(Android で `su -c boot_windows.sh`、Windows を再起動すると Android に戻る)。ゲストは 2 つ: ビルド 28000(26H1)と、VHDX に入れたきれいな 25H2(26100) |
+| 起動 | スマホ単体で Windows 11 ARM64 が起動する(Android で `su -c boot_windows.sh`、Windows を再起動すると Android に戻る)。ゲストは 2 つ: ビルド 28000(26H1)と、VHDX に入れたきれいな 24H2(ビルド 26100) |
 | ストレージ | UFS の全 6 LUN。Android 側の LUN は書込み保護([docs/ja/gpt-incident.md](docs/ja/gpt-incident.md)) |
 | CPU | 8 コア。Windows 標準の電力管理が読み込まれないため、`drivers/dbgcap` に自作のガバナーを入れた |
 | 画面 | ファームウェアの GOP フレームバッファ経由で、デスクトップとログオンを表示(CPU 描画、GPU ドライバなし) |

@@ -12,7 +12,7 @@ the one phone they were written on.
 
 | Area | State |
 |---|---|
-| Boot | Windows 11 ARM64 starts from the phone alone (`su -c boot_windows.sh` in Android; the Windows restart returns to Android). Two guests: build 28000 (26H1) and a clean 25H2 (26100) in a VHDX |
+| Boot | Windows 11 ARM64 starts from the phone alone (`su -c boot_windows.sh` in Android; the Windows restart returns to Android). Two guests: build 28000 (26H1) and a clean 24H2 (build 26100) in a VHDX |
 | Storage | UFS, all six LUNs, with write-protection of the Android LUNs (see [docs/gpt-incident.md](docs/gpt-incident.md)) |
 | CPU | 8 cores; a software governor in `drivers/dbgcap` (Windows' own PPM does not load) |
 | Display | Windows desktop and logon through the firmware's GOP framebuffer (CPU rendering, no GPU driver) |

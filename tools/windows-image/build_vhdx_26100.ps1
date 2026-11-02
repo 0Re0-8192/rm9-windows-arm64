@@ -1,7 +1,7 @@
-# build_vhdx_26100.ps1 - second Windows for the phone: Win11 25H2 (26100.5074, Pro) applied from the ISO into a dynamic VHDX (boot-from-VHD test, NEXT.md 0ca).
+# build_vhdx_26100.ps1 - second Windows for the phone: Win11 24H2 (build 26100.5074, Pro) applied from the ISO into a dynamic VHDX (boot-from-VHD test, NEXT.md 0ca).
 # Runs on the PC only (admin).  Output: <RM9_WORKDIR>\winboot\w26100\w26100.vhdx, log: build_vhdx_26100.log next to it.
 $ErrorActionPreference = 'Stop'
-$iso  = '<PROJECTS>\porta-a733-bringup\roms\Win11_25H2_Japanese_Arm64_v2.iso'
+$iso  = '<PROJECTS>\<other-checkout>\roms\Win11_25H2_Japanese_Arm64_v2.iso'
 $dir  = '<RM9_WORKDIR>\winboot\w26100'
 $vhdx = Join-Path $dir 'w26100.vhdx'
 $log  = Join-Path $dir 'build_vhdx_26100.log'
