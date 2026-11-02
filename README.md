@@ -21,7 +21,7 @@ the one phone they were written on.
 | USB | Device mode to a PC (custom link, `tools/pc-link`) and host mode |
 | Wi-Fi | WCN7850 over PCIe: associates, DHCP, internet. Interrupt driven (see [docs/wifi-bringup.md](docs/wifi-bringup.md)) |
 | Not done | GPU, audio, Bluetooth, camera, modem, sensors; real power-off (a Windows shutdown becomes a restart into Android) |
-| Open problem | Unattended long runs are not yet trustworthy: see [docs/safety-lessons.md](docs/safety-lessons.md) |
+| Unattended runs | A hung Windows ends in the dump mode (safe, cool) and needs a PC or a power-button hold to return: see [docs/safety-lessons.md](docs/safety-lessons.md) |
 
 ## What kind of "native" this is
 

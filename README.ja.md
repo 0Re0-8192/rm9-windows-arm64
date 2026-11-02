@@ -19,7 +19,7 @@
 | USB | PC へのデバイスモード(自作リンク `tools/pc-link`)とホストモード |
 | Wi-Fi | PCIe 接続の WCN7850。接続、DHCP、インターネットまで可。割り込み駆動([docs/ja/wifi-bringup.md](docs/ja/wifi-bringup.md)) |
 | 未実装 | GPU、音声、Bluetooth、カメラ、モデム、センサー、本当の電源オフ(Windows のシャットダウンは Android への再起動になる) |
-| 未解決 | 無人の長時間運転は、まだ信頼できない([docs/ja/safety-lessons.md](docs/ja/safety-lessons.md)) |
+| 無人運転 | 固まった Windows はダンプモード(熱を出さない待機)で止まり、戻すには PC の操作か電源長押しが要る([docs/ja/safety-lessons.md](docs/ja/safety-lessons.md)) |
 
 ## どういう意味での「ネイティブ」か
 

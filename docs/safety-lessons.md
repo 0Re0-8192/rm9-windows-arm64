@@ -16,7 +16,7 @@ What replaced it (`drivers/dbgcap`):
 
 * **Watchdog keep-alive.** MuChain passes the watchdog on to Windows still running. Once `dbgcap` loads, it re-arms the watchdog
   and pings it once a second, but only while the 500 ms timer DPC runs on every CPU and the temperature is acceptable. If Windows
-  stops, the pings stop and the phone resets about 30 seconds later. The ping has to be an `smc #0` from the kernel (an HVC does
+  stops, the pings stop and the watchdog bites about 30 seconds later; the phone then waits in the dump mode (section 4). The ping has to be an `smc #0` from the kernel (an HVC does
   not reach the watchdog), which is a small `armasm64` stub (`drivers/dbgcap/smc.asm`).
 * **Battery temperature cut-off.** The battery temperature (from the same RAM block the ACPI battery uses) is read every second.
   Above 40 °C the performance budget is reduced; at 48 °C for ten seconds the pings stop and the phone restarts into Android.
@@ -62,10 +62,20 @@ stale base leaves NTFS inconsistent. Anything that gives Windows internet access
 * **`esp_put.ps1` can silently write an empty file** if given a path with doubled backslashes. Check the size after every write to
   the ESP.
 
-## 4. Still open (2026-11-02)
+## 4. After a watchdog bite the phone waits in dump mode (2026-11-02)
 
-The watchdog-bite test on the 26100 guest with Wi-Fi up (stop the pings on purpose and wait for the reset) did not return the phone
-to Android: it reappeared as an EDL device (`19D2:0112`, USB name `QUSB_BULK_CID:0448_SN:...`, which shows as an error without
-a Qualcomm serial driver, and is easy to mistake for another device) and then stopped answering on USB. An earlier run of the same
-kind of test recovered; it is believed to have been without the WLAN link, but that is a guess. The cause is not known. Until it
-is, treat "the guard resets a hung Windows" as proven only for the earlier configuration, and do not run unattended with Wi-Fi up.
+A watchdog-bite test on the 26100 guest (stop the pings on purpose and wait for the reset) did not bring the phone back to
+Android, and for most of a day it looked like a hang: the phone appeared on the PC as `19D2:0112`, USB name
+`QUSB_BULK_CID:0448_SN:...` (an error device without a Qualcomm serial driver), and later stopped answering on USB at all. It was
+not a hang. The phone was in the **ZTE (Qualcomm) memory dump mode**, which is what a bite or a SoC crash leads to here: the
+Android kernel enables the dump mode at boot (`qcom_dload_mode`, `download_mode=1`), so a bite does not reboot, it parks the
+phone in the dump mode until a PC answers the Sahara handshake (a Sahara reset, `tools/pc-link/sahara_reset.ps1`, from a PC that
+has the serial driver) or the power button is held. After a normal restart the phone was in Android again, and the battery
+(which had been in the dump mode for about nine hours) was at 31 °C.
+
+What this means:
+
+* The guard does what it is for: a hung Windows ends in a state that produces no heat and needs no Windows. It does not bring
+  the phone back by itself.
+* An unattended run needs the PC side of the recovery as well: detect `19D2:0112` and send the Sahara reset.
+* Do not use an EDL tool on the dump mode, and do not call `19D2:0112` "EDL" (the author did, and lost a day to it).
