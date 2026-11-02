@@ -23,6 +23,15 @@ the one phone they were written on.
 | Not done | GPU, audio, Bluetooth, camera, modem, sensors; real power-off (a Windows shutdown becomes a restart into Android) |
 | Open problem | Unattended long runs are not yet trustworthy: see [docs/safety-lessons.md](docs/safety-lessons.md) |
 
+## What kind of "native" this is
+
+Windows runs as the guest of the stock Gunyah hypervisor, at EL1, in the place Android normally occupies. Android is not underneath
+it and this is not a virtual machine inside Android. It is also not bare metal: Gunyah still owns EL2 and virtualises the GIC and
+the ITS (which is why [docs/wifi-bringup.md](docs/wifi-bringup.md) has the workarounds it does). Replacing Gunyah is not attempted.
+
+Everything described here was checked on one phone by the author, from logs and screenshots taken during the runs. It has not been
+independently reproduced.
+
 ## Read first: this can hurt a phone
 
 Several of the tools here write to UFS partitions, talk to the bootloader, or run Windows on hardware that has no thermal or

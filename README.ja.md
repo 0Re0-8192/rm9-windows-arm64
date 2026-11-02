@@ -21,6 +21,12 @@
 | 未実装 | GPU、音声、Bluetooth、カメラ、モデム、センサー、本当の電源オフ(Windows のシャットダウンは Android への再起動になる) |
 | 未解決 | 無人の長時間運転は、まだ信頼できない([docs/ja/safety-lessons.md](docs/ja/safety-lessons.md)) |
 
+## どういう意味での「ネイティブ」か
+
+Windows は、純正の Gunyah ハイパーバイザーのゲストとして EL1 で動きます。普段 Android がいる場所に Windows が入る形です。Android の上の仮想マシンではなく、Android が下にいるわけでもありません。ただし、ベアメタルでもありません。EL2 は Gunyah のままで、GIC と ITS も Gunyah が仮想化しています([docs/ja/wifi-bringup.md](docs/ja/wifi-bringup.md) の回避策は、このためです)。Gunyah を置き換えることは、試みていません。
+
+ここに書いたことは、作者が 1 台の端末で、実行中に取ったログとスクリーンショットから確認したものです。第三者による再現は、まだありません。
+
 ## 先にお読みください: 端末を壊す可能性があります
 
 ここにあるツールには、UFS のパーティションへの書き込み、ブートローダーとのやり取り、温度や電力の管理を持たない Windows の実機実行が含まれます。初期には、Windows の起動で全 LUN の GPT が書き換わり、EDL から復旧しました。固まった Windows が電池を過熱させたこともあります。うまくいかなかった事例は [docs/ja/safety-lessons.md](docs/ja/safety-lessons.md) にすべて書いてあります。何かを実行する前に読み、失ってよい端末以外では動かさないでください。
